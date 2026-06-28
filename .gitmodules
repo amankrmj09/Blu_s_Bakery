@@ -39,3 +39,11 @@
 [submodule "common-libs"]
 	path = common-libs
 	url = https://github.com/amankrmj09/bakery-common-libs
+[submodule "reactjs/bakery-user"]
+	path = reactjs/bakery-user
+	url = https://github.com/amankrmj09/bakery-website
+	branch = main
+[submodule "reactjs/bakery-admin"]
+	path = reactjs/bakery-admin
+	url = https://github.com/amankrmj09/bakery-admin-website
+	branch = main
