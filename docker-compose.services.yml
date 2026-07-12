@@ -1,0 +1,143 @@
+version: '3.8'
+
+services:
+  postgres-auth:
+    image: postgres:18-alpine
+    container_name: bakery-auth-db
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: bakery_auth
+      POSTGRES_USER: auth_user
+      POSTGRES_PASSWORD: auth_password
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+    volumes:
+      - postgres_auth_data:/var/lib/postgresql
+    networks:
+      - dokploy-network
+
+  postgres-orders:
+    image: postgres:18-alpine
+    container_name: bakery-orders-db
+    restart: unless-stopped
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_DB: bakery_orders
+      POSTGRES_USER: order_user
+      POSTGRES_PASSWORD: order_password
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+    volumes:
+      - postgres_orders_data:/var/lib/postgresql
+    networks:
+      - dokploy-network
+
+  postgres-payments:
+    image: postgres:18-alpine
+    container_name: bakery-payments-db
+    restart: unless-stopped
+    ports:
+      - "5435:5432"
+    environment:
+      POSTGRES_DB: bakery_payments
+      POSTGRES_USER: payment_user
+      POSTGRES_PASSWORD: payment_password
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+    volumes:
+      - postgres_payments_data:/var/lib/postgresql
+    networks:
+      - dokploy-network
+
+  postgres-carts:
+    image: postgres:18-alpine
+    container_name: bakery-carts-db
+    restart: unless-stopped
+    ports:
+      - "5436:5432"
+    environment:
+      POSTGRES_DB: bakery_carts
+      POSTGRES_USER: cart_user
+      POSTGRES_PASSWORD: cart_password
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+    volumes:
+      - postgres_carts_data:/var/lib/postgresql
+    networks:
+      - dokploy-network
+
+  postgres-notifications:
+    image: postgres:18-alpine
+    container_name: bakery-notifications-db
+    restart: unless-stopped
+    ports:
+      - "5437:5432"
+    environment:
+      POSTGRES_DB: bakery_notifications
+      POSTGRES_USER: notification_user
+      POSTGRES_PASSWORD: notification_password
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+    volumes:
+      - postgres_notifications_data:/var/lib/postgresql
+    networks:
+      - dokploy-network
+
+  mongo-products:
+    image: mongo:8.0
+    container_name: bakery-products-db
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: product_user
+      MONGO_INITDB_ROOT_PASSWORD: product_password
+      MONGO_INITDB_DATABASE: bakery_products
+    volumes:
+      - mongo_products_data:/data/db
+    networks:
+      - dokploy-network
+
+  redis-carts:
+    image: redis:8.8-alpine
+    container_name: bakery-carts-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis_carts_data:/data
+    networks:
+      - dokploy-network
+
+  kafka:
+    image: apache/kafka:4.3.1
+    container_name: bakery-kafka
+    restart: unless-stopped
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: PLAINTEXT://:29092,CONTROLLER://:9093,PLAINTEXT_HOST://:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+    networks:
+      - dokploy-network
+
+networks:
+  dokploy-network:
+    external: true
+
+volumes:
+  postgres_auth_data:
+  postgres_orders_data:
+  postgres_payments_data:
+  postgres_carts_data:
+  postgres_notifications_data:
+  mongo_products_data:
+  redis_carts_data:
