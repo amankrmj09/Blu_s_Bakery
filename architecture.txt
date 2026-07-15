@@ -1,0 +1,204 @@
+================================================================================
+                SHAH'S BAKERY - DETAILED MICROSERVICE ARCHITECTURE GUIDE
+================================================================================
+
+1. PHILOSOPHY & FOUNDATION
+--------------------------------------------------------------------------------
+The Shah's Bakery platform implements a Domain-Driven Microservices architecture,
+abandoning the monolithic approach to provide hyper-scalability and extreme fault
+tolerance. This architecture ensures that specific domains (e.g., viewing products
+vs. placing orders) can scale independently based on traffic patterns.
+
+KEY TECHNOLOGY CHOICES:
+- Polyglot Persistence: We do not use a single "God Database". We fit the database 
+  to the domain:
+   * MongoDB: Used for Products. Bakery items often have dynamic, unstructured 
+     attributes (e.g., allergies, custom cake options). A NoSQL document store 
+     handles this variability perfectly.
+   * Elasticsearch: Used alongside MongoDB in the Product service for lightning-fast 
+     fuzzy searching, autocomplete, and facet filtering of the bakery catalogue.
+   * PostgreSQL: Used in Auth, Orders, Payments, Notifications, and Carts for 
+     strong ACID compliance where relational integrity is critical.
+   * Redis: Used in the Cart Service (for ephemeral session caching) and the 
+     API Gateway (for tracking distributed rate limits).
+- Asynchronous Event-Driven Bus (Apache Kafka): Decouples core logic from 
+  side-effects. An Order doesn't synchronously wait for an email to send. It fires
+  an event and moves on.
+- Edge Infrastructure: Cloudflare R2 / AWS S3 manages binary media (images) closer 
+  to the user, removing heavy lifting from the Spring Boot containers.
+
+
+2. ROOT-LEVEL TOPOLOGY
+--------------------------------------------------------------------------------
+[ Client Layer ]
+ReactJS Admin Portal & ReactJS User Portal (Vite + React)
+        |
+        v (HTTPS / REST)
+[ Edge Layer ]
+API Gateway (Port 8080) -> Uses Redis for Rate Limiting. Validates JWTs.
+Config Server -> Pulls `.yml` properties from Git (`config-repo`).
+Eureka Server -> Service Registry for dynamic IP resolution.
+        |
+        v (Internal Routing via Eureka)
+[ Domain Services Layer ]
+* Auth Service (Postgres)
+* Product Service (MongoDB + Elasticsearch)
+* Cart Service (Redis + Postgres)
+* Order Service (Postgres)
+* Payment Service (Postgres)
+* Notification Service (Postgres)
+        |
+        v (Asynchronous Pub/Sub)
+[ Messaging Infrastructure ]
+Apache Kafka & Zookeeper
+
+
+3. DETAILED SERVICE-LEVEL ARCHITECTURE
+--------------------------------------------------------------------------------
+
+A. API Gateway (`bakery_api_gateway`)
+- Primary Role: Edge routing, security, and traffic shaping.
+- Architecture: Built on Spring Cloud Gateway. It intercepts all incoming requests.
+- Internal Features: 
+  * `AuthenticationFilter`: Extracts JWTs from headers, validates signatures, 
+    and injects user claims into downstream headers.
+  * `RateLimiterConfig`: Connects to `bakery-gateway-redis` to enforce request 
+    quotas (e.g., preventing brute force or DDoS).
+- Database: Redis (strictly for rate-limiting tokens).
+
+B. Product Service (`bakery_product_service`)
+- Primary Role: The source of truth for the bakery catalogue, inventory, and media.
+- Architecture: Read-heavy service. 
+- Internal Features:
+  * `CategoryController` & `ProductController`: Handles browsing.
+  * `ProductSearchRepository`: Integrates with Elasticsearch for fast text queries.
+  * `InventoryController`: Tracks real-time stock levels of baked goods.
+  * `UploadController` & `R2StorageService`: Directly integrates with Cloud Storage 
+    (Cloudflare R2 / S3) to handle image uploads for new cakes/pastries.
+  * `SiteConfigController`: Manages dynamic storefront configurations (banners, themes).
+- Database: MongoDB (`bakery_products` db) for documents, Elasticsearch for search.
+
+C. Auth Service (`bakery_auth_service`)
+- Primary Role: Identity provider and Central Admin Hub.
+- Architecture: It issues JWTs and secures endpoints, but it uniquely serves as 
+  the admin backend.
+- Internal Features:
+  * `AuthController` & `UserController`: Standard registration, login, JWT refresh.
+  * `DashboardStatisticsService`: Aggregates platform-wide data (revenue, signups) 
+    for the Admin Portal.
+  * `StoreSettingsController`: Manages global business settings.
+- Database: PostgreSQL (`bakery_auth`).
+
+D. Cart Service (`bakery_cart_service`)
+- Primary Role: Shopping session management.
+- Architecture: High-throughput, low-latency design. 
+- Internal Features:
+  * Uses `OrderServiceClient` & `ProductServiceClient` (Feign) to validate items.
+  * `CartController`: Handles additions/removals. Calculates real-time totals.
+  * `CartMaintenanceService`: A background daemon that purges abandoned carts 
+    and handles state syncing between Redis and Postgres.
+- Database: Redis (`bakery-carts-redis`) for speed, PostgreSQL (`bakery_carts`) for durability.
+
+E. Order Service (`bakery_order_service`)
+- Primary Role: Core transactional state machine.
+- Architecture: Hybrid synchronous/asynchronous.
+- Internal Features:
+  * `OrderController`: Creates orders. 
+  * Synchronous Flow: Calls Cart Service to fetch items, and Product Service to 
+    lock inventory. If successful, writes to Postgres.
+  * Asynchronous Flow: Uses `OrderEventPublisher` to drop an `OrderCreatedEvent` 
+    into Kafka, immediately freeing up the thread.
+- Database: PostgreSQL (`bakery_orders`).
+
+F. Payment Service (`bakery_payment_service`)
+- Primary Role: Financial ledger and 3rd party integration.
+- Architecture: Event-driven and highly secure.
+- Internal Features:
+  * Integrates with Stripe/PayPal. Exposes a `Webhook` controller for callbacks.
+  * `PaymentRequestedEventConsumer`: Listens to Kafka to start the payment loop.
+  * `InternalStatsClient`: When a payment clears, it synchronously pushes the 
+    revenue data to the Auth Service's Dashboard Statistics.
+  * Publishes `PaymentCompletedEvent` to Kafka.
+- Database: PostgreSQL (`bakery_payments`).
+
+G. Notification Service (`bakery_notification_service`)
+- Primary Role: Customer engagement.
+- Architecture: Fully decoupled worker service. Exposes almost zero public APIs.
+- Internal Features:
+  * Listens to Kafka via `OrderEventConsumer`, `PaymentEventConsumer`, and 
+    `UserEventConsumer`.
+  * Integrates with the `Brevo API` to render HTML templates and send Emails/SMS 
+    when these domain events trigger.
+- Database: PostgreSQL (`bakery_notifications`) for tracking sent messages.
+
+
+4. COMPREHENSIVE DATA FLOW & URL DIAGRAMS
+--------------------------------------------------------------------------------
+
+FLOW 1: Customer Browsing & Searching Products
+[Actor: User] -> HTTP GET `https://api.shahs-bakery.com/api/products?search=chocolate`
+   |-> [API Gateway]
+        | (Validates no auth needed)
+        |-> (Eureka lookup: Product Service)
+             |-> [Product Service] -> `ProductController.java`
+                  |-> Hits `ProductSearchRepository` (Elasticsearch)
+                  |-> Fallback/Lookup in `ProductRepository` (MongoDB)
+                  |-> Transforms to `ProductResponseDto`
+             <-| Returns JSON
+   <-| Returns 200 OK
+[Actor: User] Views rendered chocolate cakes.
+
+
+FLOW 2: Adding Item to Cart
+[Actor: User] -> HTTP POST `https://api.shahs-bakery.com/api/carts/{cartId}/items`
+   |-> [API Gateway]
+        | (Validates JWT, injects User-ID Header)
+        |-> [Cart Service] -> `CartItemController.java`
+             |-> Synchronous Feign Call -> [Product Service] `GET /api/products/{id}`
+             |-> Checks price and availability.
+             |-> Updates `Cart` object in Redis.
+             |-> Persists snapshot to PostgreSQL.
+             <-| Returns Updated Cart JSON
+   <-| Returns 200 OK
+
+
+FLOW 3: The Complete Checkout Lifecycle (Hybrid Sync/Async)
+[Actor: User] -> HTTP POST `https://api.shahs-bakery.com/api/orders`
+   |-> [API Gateway]
+        |-> [Order Service] -> `OrderController.java`
+             |-> (Sync) Feign Call -> [Cart Service] to fetch cart.
+             |-> (Sync) Feign Call -> [Product Service] to lock stock.
+             |-> Writes Order to PostgreSQL (Status: PENDING_PAYMENT).
+             |-> (Async) `OrderEventPublisher` drops `OrderCreatedEvent` to Kafka.
+             <-| Returns 201 Created (Order ID) to User.
+
+   ... (Background Kafka Processing) ...
+   |-> [Kafka Topic: order-events]
+        |
+        |--> [Notification Service] -> `OrderEventConsumer.java`
+        |     |-> Calls Brevo API -> Sends "Order Placed" Email.
+        |
+        |--> [Payment Service] -> `PaymentRequestedEventConsumer.java`
+              |-> Calls Stripe API to create Payment Intent.
+              |-> (User completes payment on Stripe frontend)
+
+   ... (Webhook Fulfillment) ...
+[Actor: Stripe] -> HTTP POST `https://api.shahs-bakery.com/api/payments/webhook`
+   |-> [API Gateway]
+        |-> [Payment Service] -> `PaymentController.webhook()`
+             |-> Validates Signature.
+             |-> Writes to PostgreSQL (Status: SUCCESS).
+             |-> (Sync) Feign Call -> [Auth Service] to update Revenue Dashboard Stats.
+             |-> (Async) Publishes `PaymentCompletedEvent` to Kafka.
+             <-| Returns 200 OK to Stripe.
+
+   ... (Finalizing Order) ...
+   |-> [Kafka Topic: payment-events]
+        |
+        |--> [Order Service] -> `PaymentEventConsumer.java`
+        |     |-> Updates Order in PostgreSQL (Status: BAKING).
+        |
+        |--> [Notification Service] -> `PaymentEventConsumer.java`
+              |-> Calls Brevo API -> Sends "Receipt & Baking Started" Email.
+
+================================================================================
