@@ -47,3 +47,6 @@
 	path = reactjs/bakery-admin
 	url = https://github.com/amankrmj09/bakery-admin-website
 	branch = main
+[submodule "bakery_engagement_service"]
+	path = bakery_engagement_service
+	url = https://github.com/amankrmj09/bakery_engagement_service.git
