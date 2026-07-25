@@ -22,6 +22,7 @@ The platform follows microservice architectural principles. Services communicate
 | **API Gateway** | Central routing, authentication, and request filtering. |
 | **Auth Service** | User authentication, authorization, Admin Analytics, and Global Store Settings. |
 | **Cart Service** | Shopping cart handling, session management, totals calculation, and automated maintenance. |
+| **Engagement Service** | Customer testimonials, community feedbacks, curation, and Elasticsearch indexing. |
 | **Eureka Server** | Service registry and discovery for dynamic microservice location. |
 | **Notification Service** | Multi-channel notifications via Brevo and Kafka event-driven broadcasting. |
 | **Order Service** | Order processing, status updates, history management, and Kafka event publishing. |
@@ -91,6 +92,7 @@ bakery/
 ├── bakery_api_gateway/        # API Gateway routing and security 
 ├── bakery_auth_service/       # User auth 
 ├── bakery_cart_service/       # Shopping and session cart 
+├── bakery_engagement_service/ # Customer testimonials, feedbacks, and admin curation
 ├── bakery_eureka_server/      # Service discovery server 
 ├── bakery_notification_service/# Notifications, templates and campaigns 
 ├── bakery_order_service/      # Order processing & lifecycle 
