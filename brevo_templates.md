@@ -506,3 +506,74 @@ Here are the beautiful, responsive HTML templates for all 11 notification events
 </body>
 </html>
 ```
+
+---
+
+## 12. Testimonial Thank You
+**Subject:** Thank You For Your Testimonial
+**Params Used:** `firstName`
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Thank You For Your Testimonial</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #fdfbf7; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #333333;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding: 40px 0;">
+        <tr>
+            <td align="center">
+                <table width="600" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    <tr>
+                        <td style="padding: 40px 30px; line-height: 1.6;">
+                            <h2 style="color: #1e3a8a; margin-top: 0;">We appreciate your kind words!</h2>
+                            <p>Hi {{ params.firstName }},</p>
+                            <p>Thank you so much for submitting a testimonial. Your wonderful words not only make our bakers smile, but they also help our community grow.</p>
+                            <p>We may feature your story on our homepage to share the love!</p>
+                            <p>Stay sweet,<br><strong>The Blu's Bakery Team</strong></p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+```
+
+---
+
+## 13. Contact Us Received
+**Subject:** We've Received Your Message
+**Params Used:** `firstName`, `ticketId`
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>We've Received Your Message</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #fdfbf7; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #333333;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding: 40px 0;">
+        <tr>
+            <td align="center">
+                <table width="600" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    <tr>
+                        <td style="padding: 40px 30px; line-height: 1.6;">
+                            <h2 style="color: #1e3a8a; margin-top: 0;">Thanks for reaching out!</h2>
+                            <p>Hi {{ params.firstName }},</p>
+                            <p>This is to confirm that we have received your contact request.</p>
+                            <p>Your reference ticket number is: <strong style="color: #1e3a8a;">#{{ params.ticketId }}</strong></p>
+                            <p>One of our friendly team members will get back to you shortly to assist you.</p>
+                            <p>Warm regards,<br><strong>Customer Support Team</strong></p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+```
