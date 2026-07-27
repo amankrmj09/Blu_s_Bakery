@@ -577,3 +577,49 @@ Here are the beautiful, responsive HTML templates for all 11 notification events
 </body>
 </html>
 ```
+
+---
+
+## 14. Order Cancelled by Admin
+**Subject:** Update on Your Order #{{ params.orderNumber }}
+**Params Used:** `firstName`, `orderId`, `orderNumber`, `cancellationReason`
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Order Cancelled</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #fdfbf7; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #333333;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding: 40px 0;">
+        <tr>
+            <td align="center">
+                <table width="600" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; border-radius: 8px; border-top: 5px solid #ef4444; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    <tr>
+                        <td style="padding: 40px 30px; line-height: 1.6;">
+                            <h2 style="color: #ef4444; margin-top: 0;">Order Cancellation Notice</h2>
+                            <p>Hi {{ params.firstName }},</p>
+                            <p>We are writing to inform you that your recent order <strong>#{{ params.orderNumber }}</strong> has been cancelled.</p>
+                            
+                            <table width="100%" cellpadding="10" cellspacing="0" border="0" style="background-color: #fef2f2; border-radius: 4px; margin: 20px 0; color: #991b1b;">
+                                <tr>
+                                    <td><strong>Reason for cancellation:</strong></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size: 15px;">{{ params.cancellationReason }}</td>
+                                </tr>
+                            </table>
+
+                            <p style="font-size: 14px; color: #6b7280;">If you have already been charged for this order, an automatic refund has been initiated to your original payment method. It may take 3-5 business days to appear on your statement.</p>
+                            <p>We sincerely apologize for any inconvenience this may have caused. If you have any questions, please reply directly to this email.</p>
+                            <p>Best regards, <br><strong>The Blu's Bakery Team</strong></p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+```
