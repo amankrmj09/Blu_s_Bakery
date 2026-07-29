@@ -36,9 +36,6 @@
 [submodule "config-repo"]
 	path = config-repo
 	url = https://github.com/amankrmj09/bakery-config-repo
-[submodule "common-libs"]
-	path = common-libs
-	url = https://github.com/amankrmj09/bakery-common-libs
 [submodule "reactjs/bakery-user"]
 	path = reactjs/bakery-user
 	url = https://github.com/amankrmj09/bakery-website
@@ -50,3 +47,15 @@
 [submodule "bakery_engagement_service"]
 	path = bakery_engagement_service
 	url = https://github.com/amankrmj09/bakery_engagement_service.git
+[submodule "bakery_common_core"]
+	path = bakery_common_core
+	url = https://github.com/amankrmj09/bakery_common_core
+[submodule "bakery_common_feign"]
+	path = bakery_common_feign
+	url = https://github.com/amankrmj09/bakery-common-feign
+[submodule "bakery_common_messaging"]
+	path = bakery_common_messaging
+	url = https://github.com/amankrmj09/bakery_common_messaging
+[submodule "bakery_common_security"]
+	path = bakery_common_security
+	url = https://github.com/amankrmj09/bakery_common_security
