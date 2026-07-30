@@ -623,3 +623,221 @@ Here are the beautiful, responsive HTML templates for all 11 notification events
 </body>
 </html>
 ```
+
+
+---
+
+## 15. Admin Notification: New Order Received
+**Subject:** [Admin Alert] New Order Received - #{{ params.orderNumber }}
+**Params Used:** `orderNumber`, `customerName`, `totalAmount`, `orderDate`
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>New Order Alert</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #f3f4f6; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #1f2937;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding: 40px 0;">
+        <tr>
+            <td align="center">
+                <table width="600" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; border-radius: 8px; border-top: 5px solid #3b82f6; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                    <tr>
+                        <td style="padding: 30px; border-bottom: 1px solid #e5e7eb; background-color: #eff6ff;">
+                            <h2 style="color: #1d4ed8; margin: 0; font-size: 20px;">Admin Alert: New Order</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 30px; line-height: 1.6;">
+                            <p style="margin-top: 0;">A new order has been placed on the store.</p>
+                            <table width="100%" cellpadding="10" cellspacing="0" border="0" style="background-color: #f9fafb; border-radius: 4px; margin: 20px 0;">
+                                <tr>
+                                    <td width="40%" style="color: #6b7280; font-size: 14px;"><strong>Order Number:</strong></td>
+                                    <td style="font-size: 14px; font-weight: bold; color: #111827;">{{ params.orderNumber }}</td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #6b7280; font-size: 14px;"><strong>Customer:</strong></td>
+                                    <td style="font-size: 14px;">{{ params.customerName }}</td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #6b7280; font-size: 14px;"><strong>Total Amount:</strong></td>
+                                    <td style="font-size: 14px; color: #059669; font-weight: bold;">${{ params.totalAmount }}</td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #6b7280; font-size: 14px;"><strong>Date/Time:</strong></td>
+                                    <td style="font-size: 14px;">{{ params.orderDate }}</td>
+                                </tr>
+                            </table>
+                            <div style="text-align: center; margin-top: 30px;">
+                                <a href="#" style="background-color: #1d4ed8; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 14px;">View in Admin Panel</a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+```
+
+---
+
+## 16. Admin Notification: Payment Received
+**Subject:** [Admin Alert] Payment Received for Order #{{ params.orderNumber }}
+**Params Used:** `orderNumber`, `amount`, `paymentId`
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Payment Received Alert</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #f3f4f6; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #1f2937;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding: 40px 0;">
+        <tr>
+            <td align="center">
+                <table width="600" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; border-radius: 8px; border-top: 5px solid #10b981; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                    <tr>
+                        <td style="padding: 30px; border-bottom: 1px solid #e5e7eb; background-color: #ecfdf5;">
+                            <h2 style="color: #047857; margin: 0; font-size: 20px;">Admin Alert: Payment Successful</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 30px; line-height: 1.6;">
+                            <p style="margin-top: 0;">Payment has been successfully processed for a recent order.</p>
+                            <table width="100%" cellpadding="10" cellspacing="0" border="0" style="background-color: #f9fafb; border-radius: 4px; margin: 20px 0;">
+                                <tr>
+                                    <td width="40%" style="color: #6b7280; font-size: 14px;"><strong>Order Number:</strong></td>
+                                    <td style="font-size: 14px; font-weight: bold; color: #111827;">{{ params.orderNumber }}</td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #6b7280; font-size: 14px;"><strong>Amount Paid:</strong></td>
+                                    <td style="font-size: 14px; color: #059669; font-weight: bold;">${{ params.amount }}</td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #6b7280; font-size: 14px;"><strong>Transaction ID:</strong></td>
+                                    <td style="font-size: 14px; font-family: monospace;">{{ params.paymentId }}</td>
+                                </tr>
+                            </table>
+                            <div style="text-align: center; margin-top: 30px;">
+                                <a href="#" style="background-color: #047857; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 14px;">View Order Details</a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+```
+
+---
+
+## 17. Admin Notification: User Cancelled Order
+**Subject:** [Admin Alert] User Cancelled Order - #{{ params.orderNumber }}
+**Params Used:** `orderNumber`, `customerName`, `cancellationReason`
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Order Cancelled Alert</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #f3f4f6; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #1f2937;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding: 40px 0;">
+        <tr>
+            <td align="center">
+                <table width="600" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; border-radius: 8px; border-top: 5px solid #ef4444; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                    <tr>
+                        <td style="padding: 30px; border-bottom: 1px solid #e5e7eb; background-color: #fef2f2;">
+                            <h2 style="color: #b91c1c; margin: 0; font-size: 20px;">Admin Alert: Order Cancelled by User</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 30px; line-height: 1.6;">
+                            <p style="margin-top: 0;">A customer has initiated a cancellation for their order. Please halt fulfillment processes for this order.</p>
+                            <table width="100%" cellpadding="10" cellspacing="0" border="0" style="background-color: #f9fafb; border-radius: 4px; margin: 20px 0;">
+                                <tr>
+                                    <td width="40%" style="color: #6b7280; font-size: 14px;"><strong>Order Number:</strong></td>
+                                    <td style="font-size: 14px; font-weight: bold; color: #b91c1c;">{{ params.orderNumber }}</td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #6b7280; font-size: 14px;"><strong>Customer:</strong></td>
+                                    <td style="font-size: 14px;">{{ params.customerName }}</td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #6b7280; font-size: 14px;"><strong>Reason:</strong></td>
+                                    <td style="font-size: 14px; font-style: italic;">"{{ params.cancellationReason }}"</td>
+                                </tr>
+                            </table>
+                            <p style="font-size: 13px; color: #6b7280; margin-top: 15px;">Note: If the customer already paid, an automatic refund should have been triggered by the system.</p>
+                            <div style="text-align: center; margin-top: 30px;">
+                                <a href="#" style="background-color: #b91c1c; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 14px;">Manage Order</a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+```
+
+---
+
+## 18. Admin Notification: New User Registration
+**Subject:** [Admin Alert] New User Registration - {{ params.customerName }}
+**Params Used:** `customerName`, `customerEmail`, `registrationDate`
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>New User Alert</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #f3f4f6; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #1f2937;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding: 40px 0;">
+        <tr>
+            <td align="center">
+                <table width="600" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; border-radius: 8px; border-top: 5px solid #8b5cf6; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                    <tr>
+                        <td style="padding: 30px; border-bottom: 1px solid #e5e7eb; background-color: #f5f3ff;">
+                            <h2 style="color: #6d28d9; margin: 0; font-size: 20px;">Admin Alert: New Customer Registered</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 30px; line-height: 1.6;">
+                            <p style="margin-top: 0;">A new user has created an account on Blu's Bakery.</p>
+                            <table width="100%" cellpadding="10" cellspacing="0" border="0" style="background-color: #f9fafb; border-radius: 4px; margin: 20px 0;">
+                                <tr>
+                                    <td width="40%" style="color: #6b7280; font-size: 14px;"><strong>Customer Name:</strong></td>
+                                    <td style="font-size: 14px; font-weight: bold;">{{ params.customerName }}</td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #6b7280; font-size: 14px;"><strong>Email Address:</strong></td>
+                                    <td style="font-size: 14px;"><a href="mailto:{{ params.customerEmail }}" style="color: #4f46e5;">{{ params.customerEmail }}</a></td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #6b7280; font-size: 14px;"><strong>Registration Date:</strong></td>
+                                    <td style="font-size: 14px;">{{ params.registrationDate }}</td>
+                                </tr>
+                            </table>
+                            <div style="text-align: center; margin-top: 30px;">
+                                <a href="#" style="background-color: #6d28d9; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 14px;">View User Profile</a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+```
