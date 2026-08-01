@@ -1,0 +1,59 @@
+version: '3.8'
+
+# -----------------------------------------------------------------------------
+# Before starting the stack, create a .env file in this directory.
+#
+# Generate secure random passwords:
+#   openssl rand -hex 24
+#
+# Example:
+#   ELASTIC_PASSWORD=4d2f6c8b1c9a7e0b4d2ef6a8b7c93d0e5a1b2c3d4e5f6789
+#   KIBANA_PASSWORD=8f7a3d1c9b2e5f6a7d8c9b0e1f2a3d4c5b6a7d8e9f0a1b2c
+#
+# Then start the stack:
+#   docker compose up -d
+# -----------------------------------------------------------------------------
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.10.2
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=true
+      - xpack.security.http.ssl.enabled=false
+      - bootstrap.memory_lock=true
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - "9200:9200"
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    networks:
+      - dokploy-network
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.10.2
+    container_name: kibana
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - ELASTICSEARCH_USERNAME=kibana_system
+      - ELASTICSEARCH_PASSWORD=${KIBANA_PASSWORD}
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    networks:
+      - dokploy-network
+
+networks:
+  dokploy-network:
+    external: true
+
+volumes:
+  es_data:
+    driver: local

@@ -28,7 +28,7 @@ The platform follows microservice architectural principles. Services communicate
 | **Order Service** | Order processing, status updates, history management, and Kafka event publishing. |
 | **Payment Service** | Payment processing, third-party gateway integration, and internal stats syncing. |
 | **Product Service** | Product catalogue, pricing, stock management, R2 storage uploads, and advanced search. |
-| **Common Libs** | Shared libraries, DTOs, Kafka event models, and shared security/Feign configurations. |
+| **Common Modules** | Modularized shared libraries (`core`, `messaging`, `security`, `feign`) containing DTOs, Kafka event models, security filters, and clients. |
 | **Config Server** | Centralized configuration management for all services. |
 | **Config Repo** | Backing Git repository for configuration properties. |
 | **ReactJS Frontend** | The customer-facing web application interface (Admin and User portals). |
@@ -70,12 +70,16 @@ Ensure you have the following installed:
 2. **Configure Environment:**
    Update the application configurations (e.g., database credentials, third-party API keys) inside the `config-repo` or individual service `application.yml` files.
 
-3. **Start the Infrastructure & Services:**
-   We recommend using Docker Compose to spin up the required databases and services.
+3. **Start the Infrastructure Components:**
+   Spin up the required databases and infrastructure using the provided Docker Compose files.
    ```bash
-   docker-compose -f docker-compose.infra.yml up -d
-   docker-compose -f docker-compose.services.yml up -d
+   docker-compose -f docker-compose-postgresql.yml up -d
+   docker-compose -f docker-compose-mongodb.yml up -d
+   docker-compose -f docker-compose-redis.yml up -d
+   docker-compose -f docker-compose-kafka.yml up -d
+   docker-compose -f docker-compose-elasticsearch.yml up -d
    ```
+   *(Note: Ensure infrastructure is fully running before starting the microservices via your IDE or wrapper scripts.)*
 
 4. **Access the Platform:**
    - **API Gateway:** `http://localhost:8080` (Central entry point)
@@ -98,7 +102,10 @@ bakery/
 ├── bakery_order_service/      # Order processing & lifecycle 
 ├── bakery_payment_service/    # Payment gateway integration 
 ├── bakery_product_service/    # Product catalogue management
-├── common-libs/               # Shared code and utilities
+├── bakery_common_core/        # Shared core library and DTOs
+├── bakery_common_feign/       # Shared Feign clients
+├── bakery_common_messaging/   # Shared Kafka event models
+├── bakery_common_security/    # Shared security configurations
 ├── config-repo/               # Centralized configuration properties
 ├── config-server/             # Spring Cloud Config server
 └── reactjs/                   # Frontend applications
@@ -108,8 +115,20 @@ bakery/
 
 ---
 
+## ✨ Recent Updates
+
+We've been hard at work improving the platform! Recent enhancements include:
+- **Security & Access:** Implemented OTP sign-in for the Admin portal and improved admin registration workflows.
+- **Frontend Enhancements:** Implemented SEO strategies in React, added product page parallax effects, and improved overall UI/UX components.
+- **Microservices Robustness:** Standardized logging using SLF4J, implemented centralized environment variable configurations, and improved error handling.
+- **Order & Payments:** Fixed COD payment workflows and updated admin management panel visibility for delivered orders.
+
+---
+
 ## 🎯 Next Steps & Roadmap
 
+- **Comprehensive Testing:** Implement extensive unit, integration, and end-to-end (E2E) testing across all microservices and frontend applications to ensure high reliability.
+- **Promotions & Engagement:** Develop dynamic features for combo offers and daily deals to boost customer engagement and sales.
 - **Observability Integration:** Implement comprehensive metrics monitoring and distributed tracing using **Prometheus and Grafana** across all microservices.
 
 ---
