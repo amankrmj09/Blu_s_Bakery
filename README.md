@@ -19,19 +19,20 @@ The platform follows microservice architectural principles. Services communicate
 
 | Service | Purpose |
 |---------|---------|
-| **API Gateway** | Central routing, authentication, and request filtering. |
-| **Auth Service** | User authentication, authorization, Admin Analytics, and Global Store Settings. |
-| **Cart Service** | Shopping cart handling, session management, totals calculation, and automated maintenance. |
-| **Engagement Service** | Customer testimonials, community feedbacks, curation, and Elasticsearch indexing. |
-| **Eureka Server** | Service registry and discovery for dynamic microservice location. |
-| **Notification Service** | Multi-channel notifications via Brevo and Kafka event-driven broadcasting. |
-| **Order Service** | Order processing, status updates, history management, and Kafka event publishing. |
-| **Payment Service** | Payment processing, third-party gateway integration, and internal stats syncing. |
-| **Product Service** | Product catalogue, pricing, stock management, R2 storage uploads, and advanced search. |
-| **Common Modules** | Modularized shared libraries (`core`, `messaging`, `security`, `feign`) containing DTOs, Kafka event models, security filters, and clients. |
-| **Config Server** | Centralized configuration management for all services. |
-| **Config Repo** | Backing Git repository for configuration properties. |
-| **ReactJS Frontend** | The customer-facing web application interface (Admin and User portals). |
+| [**API Gateway**](https://github.com/amankrmj09/bakery_api_gateway) | Central routing, authentication, and request filtering. |
+| [**Auth Service**](https://github.com/amankrmj09/bakery_auth_service) | User authentication, authorization, Admin Analytics, and Global Store Settings. |
+| [**Cart Service**](https://github.com/amankrmj09/bakery_cart_service) | Shopping cart handling, session management, totals calculation, and automated maintenance. |
+| [**Engagement Service**](https://github.com/amankrmj09/bakery_engagement_service) | Customer testimonials, community feedbacks, curation, and Elasticsearch indexing. |
+| [**Eureka Server**](https://github.com/amankrmj09/bakery_eureka_server) | Service registry and discovery for dynamic microservice location. |
+| [**Notification Service**](https://github.com/amankrmj09/bakery_notification_service) | Multi-channel notifications via Brevo and Kafka event-driven broadcasting. |
+| [**Order Service**](https://github.com/amankrmj09/bakery_order_service) | Order processing, status updates, history management, and Kafka event publishing. |
+| [**Payment Service**](https://github.com/amankrmj09/bakery_payment_service) | Payment processing, third-party gateway integration, and internal stats syncing. |
+| [**Product Service**](https://github.com/amankrmj09/bakery_product_service) | Product catalogue, pricing, stock management, R2 storage uploads, and advanced search. |
+| **Common Modules** | Modularized shared libraries ([`core`](https://github.com/amankrmj09/bakery_common_core), [`messaging`](https://github.com/amankrmj09/bakery_common_messaging), [`security`](https://github.com/amankrmj09/bakery_common_security), [`feign`](https://github.com/amankrmj09/bakery_common_feign)) containing DTOs, Kafka event models, security filters, and clients. |
+| [**Config Server**](https://github.com/amankrmj09/bakery-config-servers) | Centralized configuration management for all services. |
+| [**Config Repo**](https://github.com/amankrmj09/bakery-config-repo) | Backing Git repository for configuration properties. |
+| [**ReactJS Admin Site**](https://github.com/amankrmj09/Blu_s_Bakery) | The admin-facing web application interface. |
+| [**ReactJS User Site**](https://github.com/amankrmj09/Blu_s_Bakery) | The customer-facing web application interface. |
 
 ---
 
