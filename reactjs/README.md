@@ -415,6 +415,8 @@ docker run -d -p 8081:80 bakery-user:latest
 ---
 
 ## 🔗 Related Links
+
+*For overall architecture, contribution guidelines, and security policies, please refer to the main [Blu's Bakery](https://github.com/amankrmj09/Blu_s_Bakery) repository.*
 - [Parent Repository](https://github.com/amankrmj09/Blu_s_Bakery)
 - [API Reference](./API_REFERENCE.md)
 
@@ -423,5 +425,6 @@ docker run -d -p 8081:80 bakery-user:latest
 ## 📖 API Documentation
 
 For complete API endpoint specifications and integration details, see the [`API_REFERENCE.md`](./API_REFERENCE.md) document.
+
 
 
