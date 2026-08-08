@@ -52,7 +52,7 @@
 	url = https://github.com/amankrmj09/bakery_common_core
 [submodule "bakery_common_feign"]
 	path = bakery_common_feign
-	url = https://github.com/amankrmj09/bakery-common-feign
+	url = https://github.com/amankrmj09/bakery_common_feign
 [submodule "bakery_common_messaging"]
 	path = bakery_common_messaging
 	url = https://github.com/amankrmj09/bakery_common_messaging
