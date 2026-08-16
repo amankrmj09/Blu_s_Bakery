@@ -5,7 +5,7 @@
 ![Docker](https://img.shields.io/badge/Docker-Enabled-blue.svg)
 ![React](https://img.shields.io/badge/React-Frontend-61DAFB.svg?logo=react)
 
-Welcome to the **Blu'sBakery Microservice Platform**! This platform provides an integrated, highly scalable, and robust system specifically designed for managing modern bakery operations.
+Welcome to the **Blu'sBakery Microservice Platform**! This platform provides an integrated, highly scalable, and robust system specifically designed for managing modern bakery operations. The entire infrastructure is deployed using **AWS EC2 instances** and managed via **Dokploy**.
 
 Modern bakeries face numerous challenges: managing perishable inventory, coordinating complex orders, engaging customers with timely notifications, and ensuring smooth payment and delivery workflows. Our domain-driven microservice architecture offers a flexible solution to meet these needs efficiently.
 
@@ -21,6 +21,9 @@ Modern bakeries face numerous challenges: managing perishable inventory, coordin
 - [✨ Recent Updates](#-recent-updates)
 - [🎯 Next Steps & Roadmap](#-next-steps--roadmap)
 - [📸 Platform Screenshots](#-platform-screenshots)
+  - [👤 User Site](#-user-site)
+  - [🖥️ Admin Site](#️-admin-site)
+  - [☁️ AWS & Dokploy Deployment](#️-aws--dokploy-deployment)
 - [📄 License](#-license)
 
 ---
@@ -208,6 +211,19 @@ We've been hard at work improving the platform! Recent enhancements include:
   <img src="screenshots/admin_site/08_01_Reviews.png" width="600px" alt="Reviews" />
   <img src="screenshots/admin_site/09_01_Engagements.png" width="600px" alt="Engagements" />
   <img src="screenshots/admin_site/10_01_Settings.png" width="600px" alt="Settings" />
+</div>
+
+---
+
+### ☁️ AWS & Dokploy Deployment
+
+<div align="center">
+  <img src="screenshots/aws/01_01_EC2_Instances.png" width="600px" alt="EC2 Instances" />
+  <img src="screenshots/aws/02_01_EC2_Security_Groups.png" width="600px" alt="EC2 Security Groups" />
+  <img src="screenshots/aws/02_02_EC2_Security_Group_Manager.png" width="600px" alt="EC2 Security Group Manager" />
+  <img src="screenshots/aws/02_02_EC2_Security_Group_Worker.png" width="600px" alt="EC2 Security Group Worker" />
+  <img src="screenshots/aws/03_01_Elastic_ips.png" width="600px" alt="Elastic ips" />
+  <img src="screenshots/aws/04_01_Volumes.png" width="600px" alt="Volumes" />
 </div>
 
 ---
