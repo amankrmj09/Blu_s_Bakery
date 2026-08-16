@@ -50,6 +50,18 @@ The platform follows microservice architectural principles. Services communicate
 
 ---
 
+## 🌟 Key Features
+
+- **Microservice Architecture:** Independent, scalable services communicating via REST APIs and Kafka for resilient, event-driven processes.
+- **Robust Authentication & Security:** Role-based access control separating administrative functions from customer operations, featuring JWTs and OTP verification.
+- **Comprehensive Admin Portal:** Intuitive dashboard for managing products, organizing categories, monitoring inventory, tracking orders, and curating customer reviews.
+- **Multi-Channel Notifications:** Asynchronous, template-driven email and SMS notifications triggered across the customer journey.
+- **High-Performance Catalog:** Fast and efficient product discovery powered by Elasticsearch with advanced search and filtering.
+- **Modern Responsive UI:** Stunning frontend built with ReactJS, featuring glassmorphism design, smooth animations, and parallax effects.
+- **Centralized Configuration & Discovery:** Uses Spring Cloud Config and Eureka for dynamic service registration and environment management.
+
+---
+
 ## 🚀 Getting Started
 
 ### Prerequisites
