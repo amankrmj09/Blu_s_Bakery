@@ -1,2 +1,0 @@
-.github/assets/*.mp4 filter=lfs diff=lfs merge=lfs -text
-.github/assets/*.gif filter=lfs diff=lfs merge=lfs -text
