@@ -11,6 +11,20 @@ Modern bakeries face numerous challenges: managing perishable inventory, coordin
 
 ---
 
+## 📑 Table of Contents
+
+- [🏗️ Architecture & Core Microservices](#️-architecture--core-microservices)
+- [🛠️ Tech Stack](#️-tech-stack)
+- [🌟 Key Features](#-key-features)
+- [🚀 Getting Started](#-getting-started)
+- [📁 Repository Structure](#-repository-structure)
+- [✨ Recent Updates](#-recent-updates)
+- [🎯 Next Steps & Roadmap](#-next-steps--roadmap)
+- [📸 Platform Screenshots](#-platform-screenshots)
+- [📄 License](#-license)
+
+---
+
 ## 🏗️ Architecture & Core Microservices
 
 The platform follows microservice architectural principles. Services communicate over REST APIs and are built using the **Spring Boot** and **Spring Cloud** stack. 
