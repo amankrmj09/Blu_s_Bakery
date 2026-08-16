@@ -134,71 +134,55 @@ We've been hard at work improving the platform! Recent enhancements include:
 
 ---
 
-## 🎬 Video Showcase
+## 📸 Platform Screenshots
 
-Get a feel for the platform through these walkthrough videos covering the full user and admin experience.
+### 👤 User Site
 
-### 👤 User Journey
-
-| # | Title | Description | Watch |
-|---|---|---|---|
-| 01 | 🏠 Home Page Tour | Overview of the landing page, featured products, and offer banners. | [▶️ Watch](https://github.com/amankrmj09/Blu_s_Bakery/raw/main/.github/assets/01_home_page_tour.mp4) |
-| 02 | 📝 Registering a New Account | Step-by-step new user registration flow. | [▶️ Watch](https://github.com/amankrmj09/Blu_s_Bakery/raw/main/.github/assets/02_register_new_account.mp4) |
-| 03 | 🔐 Logging In | Logging into the platform with user credentials. | [▶️ Watch](https://github.com/amankrmj09/Blu_s_Bakery/raw/main/.github/assets/03_user_login.mp4) |
-| 04 | 🛍️ Shop Page Tour | Browsing the product catalogue, filters, and search. | [▶️ Watch](https://github.com/amankrmj09/Blu_s_Bakery/raw/main/.github/assets/04_shop_page_tour.mp4) |
-| 05 | 🧁 Product Details Tour | Exploring an individual product's detail page. | [▶️ Watch](https://github.com/amankrmj09/Blu_s_Bakery/raw/main/.github/assets/05_product_details_tour.mp4) |
-| 06 | 🛒 Buying Products | Adding to cart and completing a full purchase. | [▶️ Watch](https://github.com/amankrmj09/Blu_s_Bakery/raw/main/.github/assets/06_buying_products.mp4) |
-| 07 | 🏷️ Applying a Coupon & Checkout | Copying a coupon from the home page offer banner and applying it at checkout. | [▶️ Watch](https://github.com/amankrmj09/Blu_s_Bakery/raw/main/.github/assets/07_applying_coupon_and_checkout.mp4) |
-| 08 | 📬 Contact Page Tour | Navigating the contact and customer support page. | [▶️ Watch](https://github.com/amankrmj09/Blu_s_Bakery/raw/main/.github/assets/08_contact_page_tour.mp4) |
-| 09 | 👤 Managing Profile & Adding Address | Updating profile info and adding a saved delivery address. | [▶️ Watch](https://github.com/amankrmj09/Blu_s_Bakery/raw/main/.github/assets/09_profile_and_adding_address.mp4) |
-
-### 🖥️ Admin Operations
-
-| # | Title | Description | Watch |
-|---|---|---|---|
-| 10 | 🖥️ Admin Portal Tour | Full walkthrough of the admin dashboard and its management features. | [▶️ Watch](https://github.com/amankrmj09/Blu_s_Bakery/raw/main/.github/assets/10_admin_site_tour.mp4) |
-| 11 | 📂 Adding a Category | How an admin creates and publishes a new product category. | [▶️ Watch](https://github.com/amankrmj09/Blu_s_Bakery/raw/main/.github/assets/11_admin_add_category.mp4) |
-| 12 | 📦 Adding a Product | How an admin creates, configures, and publishes a new product listing. | [▶️ Watch](https://github.com/amankrmj09/Blu_s_Bakery/raw/main/.github/assets/12_admin_add_product.mp4) |
-
----
-
-## 🎬 Video Showcase
-
-Get a feel for the platform through these walkthrough demos covering the full user and admin experience.
-
-### 👤 User Journey
-
-| 🏠 Home Page Tour | 📝 Registering a New Account |
-|---|---|
-| ![Home Page Tour](.github/assets/01_home_page_tour.gif) | ![Registering a New Account](.github/assets/02_register_new_account.gif) |
-
-| 🔐 Logging In | 🛍️ Shop Page Tour |
-|---|---|
-| ![Logging In](.github/assets/03_user_login.gif) | ![Shop Page Tour](.github/assets/04_shop_page_tour.gif) |
-
-| 🧁 Product Details Tour | 🛒 Buying Products |
-|---|---|
-| ![Product Details Tour](.github/assets/05_product_details_tour.gif) | ![Buying Products](.github/assets/06_buying_products.gif) |
-
-| 🏷️ Applying a Coupon & Checkout | 📬 Contact Page Tour |
-|---|---|
-| ![Applying a Coupon & Checkout](.github/assets/07_applying_coupon_and_checkout.gif) | ![Contact Page Tour](.github/assets/08_contact_page_tour.gif) |
-
-| 👤 Managing Profile & Adding Address |
-|---|
-| ![Managing Profile & Adding Address](.github/assets/09_profile_and_adding_address.gif) |
+<div align="center">
+  <img src="screenshots/bakery_site/00_01_Auth_Login.png" width="600px" alt="Auth Login" />
+  <img src="screenshots/bakery_site/00_02_Auth_Verify_OTP.png" width="600px" alt="Auth Verify OTP" />
+  <img src="screenshots/bakery_site/00_03_User_Registration.png" width="600px" alt="User Registration" />
+  <img src="screenshots/bakery_site/01_01_Home_Page.png" width="600px" alt="Home Page" />
+  <img src="screenshots/bakery_site/01_02_Home_Page_Fresh_Arrivals.png" width="600px" alt="Home Page Fresh Arrivals" />
+  <img src="screenshots/bakery_site/01_03_Home_Page_Featured_Collection.png" width="600px" alt="Home Page Featured Collection" />
+  <img src="screenshots/bakery_site/01_04_Home_Page_Top_Rated_Products_01.png" width="600px" alt="Home Page Top Rated Products 01" />
+  <img src="screenshots/bakery_site/01_05_Home_Page_Offers.png" width="600px" alt="Home Page Offers" />
+  <img src="screenshots/bakery_site/01_06_Home_Page_Testimonials_01.png" width="600px" alt="Home Page Testimonials 01" />
+  <img src="screenshots/bakery_site/01_07_Home_Page_Footer.png" width="600px" alt="Home Page Footer" />
+  <img src="screenshots/bakery_site/02_01_Menu_Page.png" width="600px" alt="Menu Page" />
+  <img src="screenshots/bakery_site/03_01_Products_details_Page.png" width="600px" alt="Products Details Page" />
+  <img src="screenshots/bakery_site/03_02_Products_details_Page.png" width="600px" alt="Products Details Page" />
+  <img src="screenshots/bakery_site/03_03_Products_details_Page_Users_Review.png" width="600px" alt="Products Details Page Users Review" />
+  <img src="screenshots/bakery_site/04_01_Contact_Us_Page.png" width="600px" alt="Contact Us Page" />
+  <img src="screenshots/bakery_site/05_01_Cart_Page.png" width="600px" alt="Cart Page" />
+  <img src="screenshots/bakery_site/06_01_User_Profile_Page.png" width="600px" alt="User Profile Page" />
+  <img src="screenshots/bakery_site/06_02_User_Order_History.png" width="600px" alt="User Order History" />
+  <img src="screenshots/bakery_site/06_03_User_Order_Details.png" width="600px" alt="User Order Details" />
+  <img src="screenshots/bakery_site/06_04_User_Address.png" width="600px" alt="User Address" />
+  <img src="screenshots/bakery_site/06_05_User_Security.png" width="600px" alt="User Security" />
+</div>
 
 ---
 
-### 🖥️ Admin Operations
+### 🖥️ Admin Site
 
-| 🖥️ Admin Portal Tour |
-|---|
-| ![Admin Portal Tour](.github/assets/10_admin_site_tour.gif) |
-
-| 📂 Adding a Category | 📦 Adding a Product |
-|---|---|
-| ![Adding a Category](.github/assets/11_admin_add_category.gif) | ![Adding a Product](.github/assets/12_admin_add_product.gif) |
+<div align="center">
+  <img src="screenshots/admin_site/01_01_Dashboard.png" width="600px" alt="Dashboard" />
+  <img src="screenshots/admin_site/02_01_Orders.png" width="600px" alt="Orders" />
+  <img src="screenshots/admin_site/02_02_Orders_Details.png" width="600px" alt="Orders Details" />
+  <img src="screenshots/admin_site/03_01_Products_Catlog.png" width="600px" alt="Products Catlog" />
+  <img src="screenshots/admin_site/03_02_Add_Product.png" width="600px" alt="Add Product" />
+  <img src="screenshots/admin_site/03_03_Add_Product.png" width="600px" alt="Add Product" />
+  <img src="screenshots/admin_site/04_01_Categories.png" width="600px" alt="Categories" />
+  <img src="screenshots/admin_site/04_02_Add_Category.png" width="600px" alt="Add Category" />
+  <img src="screenshots/admin_site/05_01_Stock_Monitor.png" width="600px" alt="Stock Monitor" />
+  <img src="screenshots/admin_site/06_01_Storefront.png" width="600px" alt="Storefront" />
+  <img src="screenshots/admin_site/06_02_Storefront_Offer.png" width="600px" alt="Storefront Offer" />
+  <img src="screenshots/admin_site/07_01_Users_Management.png" width="600px" alt="Users Management" />
+  <img src="screenshots/admin_site/08_01_Reviews.png" width="600px" alt="Reviews" />
+  <img src="screenshots/admin_site/09_01_Engagements.png" width="600px" alt="Engagements" />
+  <img src="screenshots/admin_site/10_01_Settings.png" width="600px" alt="Settings" />
+</div>
 
 ---
 
