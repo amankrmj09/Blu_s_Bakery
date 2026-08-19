@@ -224,6 +224,7 @@ We've been hard at work improving the platform! Recent enhancements include:
   <img src="screenshots/aws/02_02_EC2_Security_Group_Worker.png" width="600px" alt="EC2 Security Group Worker" />
   <img src="screenshots/aws/03_01_Elastic_ips.png" width="600px" alt="Elastic ips" />
   <img src="screenshots/aws/04_01_Volumes.png" width="600px" alt="Volumes" />
+  <img src="screenshots\dokploy\dokploy_bakery_dashboard.jpeg" width="600px" alt="Dokploy" />
 </div>
 
 ---
